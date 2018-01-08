@@ -15,13 +15,23 @@ struct NewsPageModel {
 class NewsWebPageModel {
     
     func fetchNewsPageBy(id: String, completionHandler: @escaping (NewsPageModel?) -> Void) {
-        NewsPageService().loadNewsBy(id: id) { (news: NewsPageApiModel?, error) in
-            
-            if let news = news {
-                completionHandler(NewsPageModel(pageHTML: news.content))
-            } else {
-                print("error")
-                completionHandler(nil)
+        guard let context = CoreDataManager.coreDataStack?.saveContext else {
+            print("Context error")
+            completionHandler(nil)
+            return
+        }
+        
+        if let newsPage = NewsPage.findNewsPageWith(id: id, in: context) {
+            completionHandler(NewsPageModel(pageHTML: newsPage.newsText))
+        } else {
+            NewsPageService().loadNewsBy(id: id) { (news: NewsPageApiModel?, error) in
+                if let news = news {
+                    let newsPage = NewsPage.insertNewsPage(in: context, id: id, text: news.content)
+                    completionHandler(NewsPageModel(pageHTML: newsPage?.newsText))
+                } else {
+                    print("error")
+                    completionHandler(nil)
+                }
             }
         }
     }

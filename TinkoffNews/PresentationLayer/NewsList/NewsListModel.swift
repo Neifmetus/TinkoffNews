@@ -57,17 +57,17 @@ class NewsListModel {
         
         NewsService().loadNewsList(from: first, to: last) { (news: [NewsApiModel]?, error) in
             
-            if let news = news {
+            if let news = news, let context = self.context {
                 var cells: [NewsDisplayModel] = []
                 for foundNews in news {
                     let object = News.findOrInsertNewsWith(id: foundNews.newsId,
                                               date: foundNews.publishDate,
                                               title: foundNews.title,
-                                              in: self.context!)
+                                              in: context)
                     cells.append(NewsDisplayModel(newsId: foundNews.newsId,
                                                   title: foundNews.title,
                                                   publishDate: foundNews.publishDate,
-                                                  viewCounter: (object?.viewCounter)!))
+                                                  viewCounter: object?.viewCounter ?? 0))
                     
                 }
                 

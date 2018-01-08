@@ -21,8 +21,10 @@ class NewsWebPageViewController: UIViewController, WKUIDelegate {
         
         let newsModel = NewsWebPageModel()
         newsModel.fetchNewsPageBy(id: id) { news in
-            DispatchQueue.main.async {
-                self.webView.loadHTMLString((news?.pageHTML)!, baseURL: nil)
+            if let news = news, let text = news.pageHTML {
+                DispatchQueue.main.async {
+                    self.webView.loadHTMLString(text, baseURL: nil)
+                }
             }
         }
     }
