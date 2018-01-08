@@ -75,9 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				915781BA1FF2E7110004930D /* .gitignore */,
-				915781A41FF123A60004930D /* CoreLayer */,
-				915781A31FF123950004930D /* ServiceLayer */,
-				915781A21FF123850004930D /* PresentationLayer */,
 				9157818C1FEEC91B0004930D /* TinkoffNews */,
 				9157818B1FEEC91B0004930D /* Products */,
 			);
@@ -94,6 +91,9 @@
 		9157818C1FEEC91B0004930D /* TinkoffNews */ = {
 			isa = PBXGroup;
 			children = (
+				915781A41FF123A60004930D /* CoreLayer */,
+				915781A31FF123950004930D /* ServiceLayer */,
+				915781A21FF123850004930D /* PresentationLayer */,
 				9157818D1FEEC91B0004930D /* AppDelegate.swift */,
 				915781971FEEC91B0004930D /* Assets.xcassets */,
 				915781991FEEC91B0004930D /* LaunchScreen.storyboard */,

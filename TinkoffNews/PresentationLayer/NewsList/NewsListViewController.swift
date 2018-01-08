@@ -46,7 +46,7 @@ class NewsListViewController: UIViewController, UITableViewDataSource, UITableVi
                 if let news = news {
                     self.newsList?.append(contentsOf: news)
                     DispatchQueue.main.async {
-                        newsTableView.reloadData()
+                        self.newsTableView.reloadData()
                     }
                 }
             }
