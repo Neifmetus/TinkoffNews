@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--News List View Controller-->
+        <!--Тинькофф Новости-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NewsListViewController" customModule="TinkoffNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -87,7 +87,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LvH-4G-Nwu"/>
+                    <navigationItem key="navigationItem" title="Тинькофф Новости" id="LvH-4G-Nwu"/>
                     <connections>
                         <outlet property="newsTableView" destination="CNT-en-OlN" id="JdH-Wg-CQU"/>
                     </connections>

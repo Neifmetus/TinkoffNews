@@ -18,10 +18,15 @@ class NewsListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.newsList = newsModel.newsList.count > 20 ? Array(newsModel.newsList[0..<20]) : newsModel.newsList
+        
         newsModel.fetchNewApps(from: 0, to: 20) { news in
-            self.newsList = news
-            DispatchQueue.main.async {
-                self.newsTableView.reloadData()
+            let count = news?.count ?? 0
+            if count > 0 {
+                self.newsList = news
+                DispatchQueue.main.async {
+                    self.newsTableView.reloadData()
+                }
             }
         }
         
@@ -34,19 +39,22 @@ class NewsListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = NewsCell()
-        cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! NewsCell
-        if ((newsList?.count)! - 1 ) > indexPath.row {
-            cell.publishDate = newsList![indexPath.row].publishDate
-            cell.title = newsList![indexPath.row].title
-            cell.newsId = newsList![indexPath.row].newsId
-            cell.counter = 0
-        } else {
-            newsModel.fetchNewApps(from: indexPath.row, to: indexPath.row + 20) { news in
-                if let news = news {
-                    self.newsList?.append(contentsOf: news)
-                    DispatchQueue.main.async {
-                        self.newsTableView.reloadData()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! NewsCell
+        
+        if let newsList = newsList {
+            if (newsList.count - 1) > indexPath.row {
+                let news = newsList[indexPath.row]
+                cell.publishDate = news.publishDate
+                cell.title = news.title
+                cell.newsId = news.newsId
+                cell.counter = Int(news.viewCounter)
+            } else {
+                newsModel.fetchNewApps(from: indexPath.row, to: indexPath.row + 20) { news in
+                    if let news = news {
+                        self.newsList?.append(contentsOf: news)
+                        DispatchQueue.main.async {
+                            self.newsTableView.reloadData()
+                        }
                     }
                 }
             }
@@ -60,7 +68,9 @@ class NewsListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if let webViewController = UIStoryboard(name: "NewsPage", bundle: nil).instantiateViewController(withIdentifier: "NewsPage") as? NewsWebPageViewController {
             if let cell = tableView.cellForRow(at: indexPath) as? NewsCell {
+                cell.counter = cell.counter + 1
                 webViewController.id = cell.newsId
+                newsModel.updateNewsBy(id: cell.newsId, viewCounter: cell.counter)
             }
             
             if let navigator = navigationController {
