@@ -30,16 +30,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6O-hr-orR">
-                                                    <rect key="frame" x="10" y="13" width="45" height="20.5"/>
+                                                    <rect key="frame" x="10" y="13" width="60" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="Ool-or-PR9"/>
+                                                        <constraint firstAttribute="width" constant="60" id="Ool-or-PR9"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NewsTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCv-As-j23">
-                                                    <rect key="frame" x="70" y="13" width="265" height="22.5"/>
+                                                    <rect key="frame" x="80" y="13" width="255" height="22.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                                             <constraints>
                                                 <constraint firstItem="vLo-zS-LX7" firstAttribute="top" secondItem="V6O-hr-orR" secondAttribute="top" id="5dZ-SJ-U08"/>
                                                 <constraint firstItem="V6O-hr-orR" firstAttribute="leading" secondItem="9is-Ag-1Im" secondAttribute="leading" constant="10" id="Bz8-kA-eaP"/>
-                                                <constraint firstItem="eCv-As-j23" firstAttribute="leading" secondItem="V6O-hr-orR" secondAttribute="trailing" constant="15" id="HCj-Ck-Z6M"/>
+                                                <constraint firstItem="eCv-As-j23" firstAttribute="leading" secondItem="V6O-hr-orR" secondAttribute="trailing" constant="10" id="HCj-Ck-Z6M"/>
                                                 <constraint firstItem="vLo-zS-LX7" firstAttribute="leading" secondItem="eCv-As-j23" secondAttribute="trailing" constant="10" id="Prf-TL-VKm"/>
                                                 <constraint firstItem="eCv-As-j23" firstAttribute="top" secondItem="V6O-hr-orR" secondAttribute="top" id="fa0-WQ-ChF"/>
                                                 <constraint firstAttribute="trailing" secondItem="vLo-zS-LX7" secondAttribute="trailing" constant="15" id="ka7-d8-OAf"/>

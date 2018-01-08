@@ -36,15 +36,16 @@ class NewsCell: UITableViewCell {
         get { return Date() }
         set {
             let timeFormatter = DateFormatter()
-            timeFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
+            timeFormatter.setLocalizedDateFormatFromTemplate("dd/MM HH:mm")
             
-            if (Calendar.current.dateComponents([.day], from: Date(), to: newValue).day ?? 0) > 7 {
+            if (Calendar.current.dateComponents([.day], from: newValue, to: Date()).day ?? 0) > 7 {
                 timeFormatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
-            } else if (Calendar.current.dateComponents([.hour], from: Date(), to: newValue).hour ?? 0) > 24 {
+            } else if (Calendar.current.dateComponents([.hour], from: newValue, to: Date()).hour ?? 0) > 24 {
                 timeFormatter.setLocalizedDateFormatFromTemplate("EEE")
             }
             
             dateLabel.text = timeFormatter.string(from: newValue)
+            dateLabel.numberOfLines = 0
         }
     }
     
